@@ -1,24 +1,24 @@
 ##**Fire Alert System using ESP32 and Blynk**
 
-##**Project Description**
+**Project Description**
 Fire Alert System with ESP32 and Blynk is a real-time fire detection project using an ESP32 microcontroller, flame sensor, and a buzzer. The system detects fire through the flame sensor and activates an alarm (buzzer) when a flame is detected. Additionally, the system sends real-time notifications to the user through the Blynk app. The project is designed for IoT applications and serves as an early warning system for fire hazards
 
-##**Project Structure**
+**Project Structure**
 - **`src/`**: Contains the Arduino source code (`fire_alert_system.ino`).
 - **`README.md`**: This document with project details, setup instructions, and code explanation.
 
-##**Hardware Requirements**
+**Hardware Requirements**
 - **ESP32 Development Board**.
 - **Flame Sensor** connected to **GPIO 13**.
 - **Buzzer** connected to **GPIO 15**.
 - **Jumper wires** for connections.
 
-##**Software Requirements**
+**Software Requirements**
 - **Arduino IDE** with ESP32 board setup.
 - **Blynk App** on your smartphone.
 - **Blynk Library** for Arduino.
 
-##**WiFi Credentials**
+**WiFi Credentials**
 - **SSID**: Replace with your WiFi network name.
 - **Password**: Replace with your WiFi password.
 
