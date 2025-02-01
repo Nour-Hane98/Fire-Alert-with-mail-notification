@@ -1,0 +1,44 @@
+#define BLYNK_TEMPLATE_ID "Add Blynk Template ID"
+#define BLYNK_TEMPLATE_NAME "Add Blynk Template Name"
+#define BLYNK_AUTH_TOKEN "Add Auth Token"
+
+#define BLYNK_PRINT Serial
+#include <WiFi.h>
+#include <BlynkSimpleEsp32.h>
+
+// 🔹 WiFi Credentials
+char ssid[] = "your wifi name";      // Replace with your WiFi name
+char pass[] = "your wifi password";  // Replace with your WiFi password
+
+// 🔹 Define sensor and buzzer pins
+#define FLAME_SENSOR_PIN  13   // Flame sensor connected to GPIO 13
+#define BUZZER_PIN        15   // Buzzer connected to GPIO 15
+
+void setup() {
+    Serial.begin(115200);
+    pinMode(FLAME_SENSOR_PIN, INPUT);
+    pinMode(BUZZER_PIN, OUTPUT);
+
+    // 🔹 Connect to WiFi and Blynk
+    Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+}
+
+void loop() {
+    Blynk.run(); // Keep Blynk connected
+
+    int flameDetected = digitalRead(FLAME_SENSOR_PIN);
+
+    if (flameDetected == HIGH) {  // HIGH means fire detected
+        Serial.println("Fire detected! Activating alarm...");
+        tone(BUZZER_PIN, 1500); // Play 1.5kHz sound
+        delay(500); // Pause before repeating
+
+        // 🔹 Send Blynk Notification with Event Name & Event ID
+        Blynk.logEvent("fire_alert", "Fire in the house");  // Here fire_alert=code event, massage event, and you change depending on the event you creat it in Blynk
+    } else {
+        Serial.println("No fire detected.");
+        noTone(BUZZER_PIN); // Stop buzzer
+    }
+
+    delay(1000); // Check every second
+}
